@@ -1,0 +1,74 @@
+$border-width: 3px;
+$border-radius: 0;
+
+@mixin reset-input-styles(){
+  margin: 0;
+  padding: 0;
+  border: none;
+  font: inherit;
+  line-height: normal;
+  border-radius: 0;
+  &:focus {
+    outline: 0;
+  }
+}
+
+.overlay-input {
+  @include reset-input-styles();
+  margin-bottom: 1rem;
+  padding: 10px;
+  width: 100%;
+  background-color: transparent;
+  border-color: $body-color;
+  border-style: solid;
+
+  font-size: 16px; // Small screens, avoid zooming when focusing
+
+  // Placeholder
+  &::placeholder {
+    color: mix($black, $white, 60%);
+    // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
+    opacity: 1;
+  }
+
+  &.error {
+    border-color: #B93B3B;
+    transition: border-color 100ms ease-out;
+  }
+}
+
+input.overlay-input {
+  border-width: 0 0 $border-width 0;
+}
+
+textarea.overlay-input {
+  border-width: $border-width;
+  border-radius: $border-radius;
+  height: 100px;
+  padding-left: 10px - $border-width; // padding minus border-width
+}
+
+input[type="submit"].overlay-input {
+  padding: 15px 26px 12px;
+  border: $border-width solid $body-color;
+  border-radius: $border-radius;
+  font-size: 1.3rem;
+  font-family: $font-family-headings;
+  transition: all 200ms ease;
+  &:hover,
+  &:active {
+    background-color: $white;
+    transition: all 200ms ease;
+  }
+}
+
+@media (min-width: $screen-sm-min) {
+  .overlay-input {
+    font-size: $font-size-base;
+  }
+  input[type="submit"].overlay-input {
+    display: inline-block;
+    width: auto;
+    float: right;
+  }
+}

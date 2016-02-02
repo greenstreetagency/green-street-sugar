@@ -1,0 +1,93 @@
+section#home {
+  > .container {
+    height: 100%;
+  }
+  .mobile-secondary,
+  .side-text {
+    text-transform: uppercase;
+    font-weight: $font-weight-semibold;
+    letter-spacing: 0.1rem;
+    font-size: 1.3rem;
+  }
+  .mobile-secondary {
+    margin: 50px 0;
+    text-align: center;
+    @include sm-up {
+      display: none
+    }
+  }
+}
+
+.home-logo {
+  display: block;
+  margin: 20px auto;
+  width: 300px;
+  max-width: 100%;
+  @media (min-width: 568px) {
+    width: 350px;
+  }
+}
+
+@keyframes bounce {
+  100%, 0% {
+    transform: translateY(0px);
+  }
+  25% {
+    transform: translateY(-10%);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+  75% {
+    transform: translateY(10%);
+  }
+}
+
+.scroll-down {
+  $height: 20px;
+  $width: 30px;
+
+  display: none;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  margin-left: -($width / 2);
+  background-image: url(/images/caret-down.png);
+  background-size: $width $height;
+  @include size($width, $height);
+
+  @include sm-up {
+    display: block;
+  }
+
+  &:hover {
+    animation-name: bounce;
+    transform-origin: center bottom;
+    animation-duration: 800ms;
+    animation-timing-function: cubic-bezier(.02, .01, .47, 1);
+    animation-fill-mode: both;
+    animation-iteration-count: infinite
+  }
+}
+
+// Only show secondary text if browser supports css transforms
+.csstransforms .side-text {
+  display: none; 
+  position: absolute;
+  top: 50%;
+  transform-origin: 50% 0;
+  @include sm-up {
+    display: block;
+  }
+  // Left & right values should be the same as header vertical padding
+  &--left {
+    left: $grid-gutter-width;
+    transform: translateX(-50%) translateY(150%) rotate(-90deg);
+    // transform-origin: top left;
+  }
+  &--right {
+    right: $grid-gutter-width;
+    transform: translateX(50%) translateY(150%) rotate(90deg);;
+    // transform-origin: top right;
+  }
+}

@@ -1,0 +1,62 @@
+@import "variables";
+@import "mixins";
+@import "normalize";
+
+@import "fonts";
+@import "scaffolding";
+@import "type";
+// @import "grid";
+@import "forms";
+@import "components";
+
+body, main {
+  overflow-x: hidden;
+}
+
+header, section, footer {
+  position: relative;
+  z-index: 1;
+}
+
+$header-height: 87px;
+
+// Below xs-min, the header is hidden
+// This is the padding for the first section when the header is fixed
+@media (min-width: $screen-sm-min) {
+  header.fixed + main {
+    padding-top: $header-height;
+    section#home {
+      margin-top: -$header-height;
+      padding: $header-height*2 0 $header-height;
+    }
+  }
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px - 30px - 30px;
+  padding-right: 30px;
+  padding-left: 30px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.pyramid-logo {
+  display: inline-block;
+  @include size(40px, 32px);
+  background-image: url(/images/pyramid.png);
+  background-size: 40px auto;
+  background-repeat: no-repeat;
+}
+
+.section-strain-info {
+  position: relative;
+  padding-bottom: 20px + 40px; // 20px of real padding + space for pyramid-logo
+  .pyramid-logo {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -20px; // 40px / 2
+  }
+}

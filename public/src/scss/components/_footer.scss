@@ -1,0 +1,84 @@
+footer {
+  padding: 50px 0 20px;
+  background-color: $body-bg;
+
+  .copyright {
+    text-align: center;
+    font-size: 0.8rem;
+  }
+}
+
+.footer-social {
+  @include clearfix;
+  margin-bottom: 40px;
+  text-align: center;
+  .instagram,
+  .facebook {
+    // margin-top: 21px;
+    font-weight: $font-weight-semibold;
+    font-size: 0.8rem;
+  }
+  .instagram {
+    float: left;
+  }
+  .facebook {
+    float: right;
+  }
+  .contact {
+    /* Pseudo Button */
+    /* Commented out lines are because a.contact is 'display:inline' by default.  Changing to inline block changes things! */
+    // display: inline-block;
+    padding: 15px 26px 12px;
+    line-height: 1;
+    border: 3px solid $body-color;
+    font-family: $font-family-headings;
+    font-size: 1.3rem;
+  }
+}
+
+.footer-links {
+  @include list-reset();
+  margin-bottom: 3px;
+  text-align: center;
+  font-weight: $font-weight-semibold;
+  font-size: 0.9rem;
+  li {
+    display: inline-block;
+    margin: 0 3px;
+    padding: 0 3px;
+    &:not(:last-child):after {
+      content: "|";
+      position: relative;
+      right: -9px;
+      top: -1px;
+      font-weight: $font-weight-normal;
+    }
+  }
+}
+
+.no-touch {
+  .footer-social {
+    .instagram,
+    .facebook {
+      // Copy the hover underline from the header links
+      position: relative;
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: lighten($body-color, 10%);
+        border-radius: 1px;
+        transform: scaleX(0);
+        transition: transform 250ms ease-in;
+        transition-delay: 100ms;
+      }
+      &:hover:after {
+        transform: scaleX(0.98);
+        transition: transform 150ms ease-out;
+      }
+    }
+  }
+}

@@ -1,0 +1,232 @@
+%strain-shadow {
+  position: absolute;
+  left: -25px;
+  right: -25px;
+  height: 25px;
+  box-shadow: 0 0 20px -5px #555;
+}
+
+section#strains {
+  background-color: $white;
+}
+
+// .strains-mobile {
+//   display: block;
+// }
+.strains-desktop {
+  display: none;
+}
+
+@include sm-up {
+  .strains-mobile {
+    display: none;
+  }
+  .strains-desktop {
+    display: block;
+  }
+}
+
+.bg {
+  &-sativa {
+    background-color: $color-sativa;
+  }
+  &-indica {
+    background-color: $color-indica;
+  }
+  &-hybrid {
+    background-color: $color-hybrid;
+  }
+}
+
+/*
+ ************************
+ * Mobile
+ ************************
+ */
+
+.strain-mobile-images {
+  position: relative;
+  .strain-mobile-images-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $section-fade-bg;   
+  }
+}
+
+.strain-mobile-image-list {
+  overflow: hidden;
+}
+
+.strain-mobile-image {
+  padding: 40px 0;
+  background-color: #FFF;
+  img {
+    @include center-block;
+    max-height: 550px;
+  }
+}
+
+.strain-mobile-infos {
+  position: relative;
+  height: 350px;
+  text-align: center;
+  transition: background-color 500ms ease-in-out;
+}
+
+.strain-mobile-infos-shadow {
+  @extend %strain-shadow;
+}
+
+.strain-mobile-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  padding: $grid-gutter-width;
+  transition: opacity 500ms ease-out;
+  &.current {
+    opacity: 1;
+    transition: opacity 500ms ease-out;
+    transition-delay: 500ms;
+  }
+}
+
+.strain-mobile-info-inner {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+// TODO - Clean this up
+.strain-mobile-info-inner-2 {
+  display: table-cell;
+  height: 100%;
+  vertical-align: middle;
+}
+  
+
+/*
+ ************************
+ * Desktop
+ ************************
+ */
+
+.strains-desktop {
+  background-color: darken($section-fade-bg, 30%);
+}
+.strain {
+  position: relative;
+}
+
+.strain-desktop-shadow {
+  @extend %strain-shadow;
+}
+
+.strain-inner {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  min-height: 500px;
+  @include clearfix;
+}
+
+.strain-image {
+  @include center-block;
+  padding: 30px 0;
+  width: 80%;
+  max-width: 400px;
+  @include sm-up {
+    padding: 0;
+    width: initial;
+    max-width: 100%;
+    // max-width: ($screen-sm-min / 2);
+  }
+  // @include md-up {
+  //   max-width: ($screen-md-min / 2);
+  // }
+  @include lg-up {
+    width: 100%;
+    max-width: 700px;
+  }
+}
+
+.strain-column {
+  width: 100%;
+  height: 100%;
+  float: left;
+  min-height: 1px;
+  overflow: hidden;
+
+  &--first {
+    background-color: $white;
+  }
+  
+  @include sm-up {
+    width: 50%;
+    &--first {
+      // Since the content contained within .strain-column--last is longer, absolutely position this first column and let the second define the flow
+      position: absolute;
+      height: 100%;
+    }
+    &--last {
+      float: right;
+    }
+  }
+
+  .strain-column-inner {
+    padding-left: $grid-gutter-width;
+    padding-right: $grid-gutter-width;
+  }
+
+  .strain-column-inner-2 {
+    padding: 60px 30px;
+    @include sm-up {
+      padding: 120px 30px;
+    }
+    @include md-up {
+      padding-left: 60px;
+      padding-right: 60px;
+    }
+  }
+}
+
+// Vertically center the content in the first column
+html.flexbox .strain-column {
+  @media (min-width: $screen-sm-min) {
+    display: flex;
+    align-items: center;
+    .strain-column-inner {
+      flex: 1;
+    }
+  }
+}
+
+// If we don't have flexbox support, vertically center the old fashioned way
+html.no-flexbox .strain-column {
+  @media (min-width: $screen-sm-min) {
+    .strain-column-inner {
+      display: table;
+      height: 100%;
+      width: 100%;
+      > * {
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+// For fun
+// .strain-mobile-images {
+//   position: fixed !important;
+//   top: 0;
+//   width: 100%;
+// }
+// .strain-mobile-infos {
+//   z-index: 2;
+// }

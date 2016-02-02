@@ -1,0 +1,78 @@
+@import "section/about";
+@import "section/home";
+@import "section/stockists";
+@import "section/strains";
+
+section {
+  @include clearfix;
+}
+
+.section-background {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  &--about {
+    background-color: #6c4411;
+    background-image: url(/images/bg-sugar.jpg);
+  }
+  &--stockists {
+    background-color: #485b61;
+    background-image: url(/images/bg-leaf.jpg);
+  }
+}
+
+.section-inner {
+  padding: 50px 0;
+}
+
+.section-heading {
+  text-align: center;
+  font-size: 3rem;
+  letter-spacing: 0.3rem;
+  font-weight: $font-weight-normal;
+}
+
+.section-text {
+  max-width: 600px;
+  margin: 0 auto;
+
+  text-align: center;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.02rem;
+  font-size: 1.2rem;
+}
+
+// Vertical Align content with flexbox if supported!
+html.flexbox {
+  @media (min-width: $screen-sm-min) {
+    section#about,
+    section#stockists {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+// Make sections the height of the viewport if units are supported
+html.cssvhunit {
+  @media (min-height: 600px) {
+    section#about,
+    section#stockists {
+      min-height: 100vh;
+    }
+  }
+  // @include sm-up {
+  //   section#about,
+  //   section#stockists {
+  //       min-height: 100vh;
+  //   }
+  // }
+}

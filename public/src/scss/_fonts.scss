@@ -1,0 +1,40 @@
+// =============================================
+// Carton
+// =============================================
+
+@font-face {
+  font-family: 'Carton';
+  src: url('#{$font-path}/Carton.eot');
+  src: url('#{$font-path}/Carton.eot') format("eot"),
+       url('#{$font-path}/Carton.woff') format('woff'), 
+       url('#{$font-path}/Carton.ttf') format('truetype'), 
+       url('#{$font-path}/Carton.svg#Carton') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+// =============================================
+// Averta Standard
+// =============================================
+
+@font-face {
+  font-family: 'Averta';
+  src: url('#{$font-path}/AvertaStd-Regular.eot');
+  src: url('#{$font-path}/AvertaStd-Regular.eot') format("eot"),
+       url('#{$font-path}/AvertaStd-Regular.woff') format('woff'), 
+       url('#{$font-path}/AvertaStd-Regular.ttf') format('truetype'), 
+       url('#{$font-path}/AvertaStd-Regular.svg#AvertaStd-Regular') format('svg');
+  font-weight: $font-weight-normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Averta';
+  src: url('#{$font-path}/AvertaStd-Semibold.eot');
+  src: url('#{$font-path}/AvertaStd-Semibold.eot') format("eot"),
+       url('#{$font-path}/AvertaStd-Semibold.woff') format('woff'), 
+       url('#{$font-path}/AvertaStd-Semibold.ttf') format('truetype'), 
+       url('#{$font-path}/AvertaStd-Semibold.svg#AvertaStd-Semibold') format('svg');
+  font-weight: $font-weight-semibold;
+  font-style: normal;
+}
