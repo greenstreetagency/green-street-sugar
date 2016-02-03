@@ -6,39 +6,36 @@
   var cAF = AF('cancel');
   var clamp = require('./math/clamp');
 
-  var DesktopStrainStickiness = function(){
+  var StrainSectionDesktop = function(){
+
     var _this = this;
-    var scrollNameSpace = 'scroll.sticky.desktop';
+    
     var $win = $(window);
     var $doc = $(document);
     var $strains = $('.strain');
+
+    var scrollNameSpace = 'scroll.sticky.desktop';
     var paused = false;
 
-    this.setElementTranslation = function(o, $el){
-
-      // THIS IS JUST AN IDEA!  Scale the content to get smaller
-      // Need to find the appropriate easing function though
+    this.setElementTransform = function(amount, $el){
 
       var $img = $el.find('.strain-image');
       var $content = $el.find('.section-strain-info');
-      var a = o * Math.pow((-o+2), 1.3);
-      var amt = clamp(a, 0, 1);
 
       rAF(function(){
         
-        // console.log('setting translate to ', amt);
-
         $img.css({
-          '-webkit-transform' : 'scale('+ amt +')',
-              '-ms-transform' : 'scale('+ amt +')',
-               '-o-transform' : 'scale('+ amt +')',
-                  'transform' : 'scale('+ amt +')'
+          '-webkit-transform' : 'scale('+ amount +')',
+              '-ms-transform' : 'scale('+ amount +')',
+               '-o-transform' : 'scale('+ amount +')',
+                  'transform' : 'scale('+ amount +')'
         });
+
         $content.css({
-          '-webkit-transform' : 'scale('+ amt +')',
-              '-ms-transform' : 'scale('+ amt +')',
-               '-o-transform' : 'scale('+ amt +')',
-                  'transform' : 'scale('+ amt +')'
+          '-webkit-transform' : 'scale('+ amount +')',
+              '-ms-transform' : 'scale('+ amount +')',
+               '-o-transform' : 'scale('+ amount +')',
+                  'transform' : 'scale('+ amount +')'
         });
 
       });
@@ -72,6 +69,10 @@
       return clamp(progress, 0, 1);
     };
 
+    this.getScaleAmount = function(progress){
+      return 1 - Math.pow(progress, 4);
+    };
+
     this.getFadeAmount = function(progress){
       return 1 - Math.pow(progress, 2.2);
     };
@@ -92,27 +93,14 @@
     this.onSectionScroll = function($el){
       if(paused) return;
 
-      var p = _this.getSectionScrollProgress($el);
-      var o = _this.getFadeAmount(p);
-      var s = _this.getNextSectionShadow($el);
+      var p = this.getSectionScrollProgress($el);
+      var o = this.getFadeAmount(p);
+      var a = this.getScaleAmount(p);
+      var s = this.getNextSectionShadow($el);
       
-      _this.setElementTranslation(o, $el);
-      _this.setElementOpacity(o, $el, s);
+      this.setElementOpacity(o, $el, s);
+      this.setElementTransform(a, $el);
     }
-
-    this.initStrainSection = function($el){
-      var index = $strains.index($el);
-      var scrollSpace = scrollNameSpace + '.' + index;
-
-      $el.css('z-index', index + 10); // 10 is arbitrary
-
-      $el.on('sticky-start', function() { 
-        $doc.on(scrollSpace, _this.onSectionScroll.bind(_this, $el, index));
-      }).on('sticky-end', function() {
-        $doc.off(scrollSpace);
-      }).sticky();
-
-    };
 
     this.pause = function(){
       paused = true;
@@ -126,22 +114,35 @@
 
     this.resizeHandler = function(){
       $strains.each(function(i, el) {
-        $(el).sticky('update');
+        var $el = $(el);
+        $el.sticky('update');
+        _this.onSectionScroll($el);
       });
+    };
+
+    this.initStrainSection = function($el){
+      var index = $strains.index($el);
+      var scrollSpace = scrollNameSpace + '.' + index;
+
+      $el.css('z-index', index + 10); // 10 is arbitrary
+
+      $el.on('sticky-start', function() { 
+        $doc.on(scrollSpace, _this.onSectionScroll.bind(_this, $el, index));
+      }).on('sticky-end', function() {
+        $doc.off(scrollSpace);
+      }).sticky();
+
+      this.onSectionScroll($el);
+
     };
 
     var initialize = function(){
 
       $strains.each(function(i, el) {
-        
-        var $el = $(el);
-
-        this.initStrainSection($el);
-        this.onSectionScroll($el);
-
+        this.initStrainSection($(el));
       }.bind(this));
       
-      $win.resize(_.debounce(_this.resizeHandler, 100));
+      $win.resize(_.debounce(_this.resizeHandler.bind(_this), 100));
 
     };
 
@@ -149,6 +150,6 @@
 
   }
 
-  module.exports = new DesktopStrainStickiness();
+  module.exports = new StrainSectionDesktop();
 
 })(jQuery);

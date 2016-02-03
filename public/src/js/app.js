@@ -5,15 +5,14 @@
   var rAF = AF('request');
   var cAF = AF('cancel');
 
-  require('./components/SvOverlay');
+  require('./components/svOverlay');
 
   var smoothScroll = require('smooth-scroll'); // https://github.com/cferdinandi/smooth-scroll
 
   // Component Classes
-  var ContactForm             = require('./components/ContactForm');
-  var DesktopStrainStickiness = require('./components/desktopStrainStickiness');
-  var MobileStrainStickiness  = require('./components/mobileStrainStickiness');
-  var MobileStrainSlider      = require('./components/mobileStrainSlider');
+  var ContactForm             = require('./components/contactForm');
+  var StrainSectionDesktop    = require('./components/strainSectionDesktop');
+  var StrainSectionMobile     = require('./components/strainSectionMobile');
 
   // Cached Elements
   var $win       = $(window);
@@ -39,9 +38,8 @@
       updateURL: false
     });
 
-    DesktopStrainStickiness.init();
-    MobileStrainStickiness.init();
-    MobileStrainSlider.init();
+    StrainSectionDesktop.init();
+    StrainSectionMobile.init();
 
     attachHandlers();
 
@@ -73,11 +71,11 @@
   function breakpointCheck() {
     // Pause the strain scroll stuff while not visible
     if(window.innerWidth >= bp.sm){
-      DesktopStrainStickiness.unpause();
-      MobileStrainStickiness.pause();
+      StrainSectionDesktop.unpause();
+      StrainSectionMobile.pause();
     } else {
-      DesktopStrainStickiness.pause();
-      MobileStrainStickiness.unpause();
+      StrainSectionDesktop.pause();
+      StrainSectionMobile.unpause();
     }
   }
 
