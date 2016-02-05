@@ -1,0 +1,13 @@
+  // Horizontal gradient, from left to right
+  //
+  // Creates two color stops, start and end, by specifying a color and position for each color stop.
+  // Color stops are not available in IE9 and below.
+  @mixin gradient-home-directional($color-1: #555, $color-2: #333, $color-3: #888, $deg: 45deg) {
+    background: -moz-linear-gradient($deg, $color-1 0%, $color-2 16%, $color-3 33%, $color-1 50%, $color-2 66%, $color-3 83%, $color-1 100%); /* ff3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, $color-1), color-stop(16%, $color-2), color-stop(33%, $color-3), color-stop(50%, $color-1), color-stop(66%, $color-2), color-stop(83%, $color-3), color-stop(100%, $color-1)); /* safari4+,chrome */
+    background: -webkit-linear-gradient($deg, $color-1 0%, $color-2 16%, $color-3 33%, $color-1 50%, $color-2 66%, $color-3 83%, $color-1 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient($deg, $color-1 0%, $color-2 16%, $color-3 33%, $color-1 50%, $color-2 66%, $color-3 83%, $color-1 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient($deg, $color-1 0%, $color-2 16%, $color-3 33%, $color-1 50%, $color-2 66%, $color-3 83%, $color-1 100%); /* ie10+ */
+    background: linear-gradient(90deg - $deg, $color-1 0%, $color-2 16%, $color-3 33%, $color-1 50%, $color-2 66%, $color-3 83%, $color-1 100%); /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$color-1}', endColorstr='#{$color-3}',GradientType=1 );
+  }

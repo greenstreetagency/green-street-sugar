@@ -13,6 +13,8 @@
     var $win = $(window);
     var $doc = $(document);
     var $strains = $('.strain');
+    var strainCount = $strains.length;
+    var revealedCount = 0; // How many strain images have been revealed
 
     var scrollNameSpace = 'scroll.sticky.desktop';
     var paused = false;
@@ -69,28 +71,84 @@
       return clamp(progress, 0, 1);
     };
 
+    /**
+     * Returns a number to use for transforming elements with css scale based on scroll progress
+     *
+     * @param {float} progress - 0.0 - 1
+     * @return {float} - 0.0 - 1.0
+     */
     this.getScaleAmount = function(progress){
-      return 1 - Math.pow(progress, 4);
+      return +(1 - Math.pow(progress, 4)).toFixed(2);
     };
 
+    /**
+     * Returns a number to use for adjusting opacity of elements based on scroll progress
+     *
+     * @param {float} progress - 0.0 - 1
+     * @return {float} - 0.0 - 1.0
+     */
     this.getFadeAmount = function(progress){
-      return 1 - Math.pow(progress, 2.2);
+      return +(1 - Math.pow(progress, 2.2)).toFixed(2);
     };
 
+    /**
+     * Returns a number to use for adjusting opacity of elements based on scroll progress
+     *
+     * @param {$element} $el
+     * @return {$element or null}
+     */
     this.getNextSectionShadow = function($el){
       var $shadow;
-      var index = $strains.index($el);
+      var i = $strains.index($el);
 
-      if($strains.eq(index+1).length){
-        $shadow = $strains.eq(index+1).find('.strain-desktop-shadow'); //get the shadow from the next section
+      if($strains.eq(i+1).length){
+        $shadow = $strains.eq(i+1).find('.strain-desktop-shadow'); //get the shadow from the next section
       } else {
-        console.log('get shadow from the section after strains');
+        // console.log('get shadow from the section after strains');
       }
 
       return $shadow;
     };
 
-    this.onSectionScroll = function($el){
+    this.onScroll = function(){
+      // if(paused) return;
+    };
+
+    /**
+     * A scroll handler for revealing the images on the page
+     * Handler is removed after all images have ben revealed
+     *
+     */
+    this.onScrollStrainReveal = function(){
+      if(paused) return;
+
+      var scrollTop = $win.scrollTop();
+      var winheight = $win.height();
+
+      $strains.each(function(i, el){
+        
+        var $el = $(el);
+
+        // Check if we've scrolled at least halfway down the strain section
+        if((scrollTop + winheight - ($el.height() / 2)) > $el.offset()['top']){
+          var $img = $el.find('.strain-image img');
+          if($img.hasClass('offstage')){
+
+            $img.removeClass('offstage');
+            revealedCount++;
+            
+            if(revealedCount == strainCount){
+              // Remove the scroll handler once all the strain images have been revealed
+              $doc.off('scroll.strainReveal');
+            }
+
+          }
+        }
+
+      });
+    };
+
+    this.onStrainScroll = function($el){
       if(paused) return;
 
       var p = this.getSectionScrollProgress($el);
@@ -105,34 +163,36 @@
     this.pause = function(){
       paused = true;
       return this;
-    }
+    };
 
     this.unpause = function(){
       paused = false;
       return this;
-    }
+    };
 
-    this.resizeHandler = function(){
-      $strains.each(function(i, el) {
+    this.onResize = function(){
+      $strains.each(function(i, el){
         var $el = $(el);
         $el.sticky('update');
-        _this.onSectionScroll($el);
+        _this.onStrainScroll($el);
       });
     };
 
     this.initStrainSection = function($el){
-      var index = $strains.index($el);
-      var scrollSpace = scrollNameSpace + '.' + index;
+      var i = $strains.index($el);
+      var scrollSpace = scrollNameSpace + '.' + i;
 
-      $el.css('z-index', index + 10); // 10 is arbitrary
+      $el.css('z-index', i + 10); // 10 is arbitrary
 
       $el.on('sticky-start', function() { 
-        $doc.on(scrollSpace, _this.onSectionScroll.bind(_this, $el, index));
+        $doc.on(scrollSpace, _this.onStrainScroll.bind(_this, $el, i));
       }).on('sticky-end', function() {
         $doc.off(scrollSpace);
       }).sticky();
 
-      this.onSectionScroll($el);
+      $el.find('.strain-image img').addClass('offstage');
+
+      this.onStrainScroll($el);
 
     };
 
@@ -142,7 +202,10 @@
         this.initStrainSection($(el));
       }.bind(this));
       
-      $win.resize(_.debounce(_this.resizeHandler.bind(_this), 100));
+      $win.on('resize', _.debounce(_this.onResize.bind(_this), 100));
+
+      // This scroll handler uses a special namespace because we remove it after all strain images have been revealed
+      $doc.on('scroll.strainReveal', _.throttle(_this.onScrollStrainReveal.bind(_this), 50));
 
     };
 

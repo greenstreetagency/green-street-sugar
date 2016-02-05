@@ -153,6 +153,18 @@ section#strains {
     width: 100%;
     max-width: 700px;
   }
+
+  // Use this as an effect for revealing the images.  Add the offstage class to hide the image and then remove it.
+  img {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: all 700ms ease-out;
+    will-change: transform;
+    &.offstage {
+      opacity: 0;
+      transform: translateY(55px);
+    }
+  }
 }
 
 .strain-column {

@@ -1,4 +1,8 @@
 section#home {
+  @include sm-up {
+    min-height: 600px;
+    height: 100vh;
+  }
   > .container {
     height: 100%;
   }
@@ -90,4 +94,23 @@ section#home {
     transform: translateX(50%) translateY(150%) rotate(90deg);;
     // transform-origin: top right;
   }
+}
+
+@keyframes shift-bg {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.home-background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 10000px;
+  @include gradient-home-directional($color-indica, $color-sativa, $color-hybrid, 10deg);
+  will-change: transform;
+  animation-name: shift-bg;
+  animation-duration: 15s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
