@@ -13,9 +13,7 @@
     var $win = $(window);
     var $doc = $(document);
     var $strains = $('.strain');
-    var strainCount = $strains.length;
-    var revealedCount = 0; // How many strain images have been revealed
-
+    
     var scrollNameSpace = 'scroll.sticky.desktop';
     var paused = false;
 
@@ -110,43 +108,6 @@
       return $shadow;
     };
 
-    this.onScroll = function(){
-      // if(paused) return;
-    };
-
-    /**
-     * A scroll handler for revealing the images on the page
-     * Handler is removed after all images have ben revealed
-     *
-     */
-    this.onScrollStrainReveal = function(){
-      if(paused) return;
-
-      var scrollTop = $win.scrollTop();
-      var winheight = $win.height();
-
-      $strains.each(function(i, el){
-        
-        var $el = $(el);
-
-        // Check if we've scrolled at least halfway down the strain section
-        if((scrollTop + winheight - ($el.height() / 2)) > $el.offset()['top']){
-          var $img = $el.find('.strain-image img');
-          if($img.hasClass('offstage')){
-
-            $img.removeClass('offstage');
-            revealedCount++;
-            
-            if(revealedCount == strainCount){
-              // Remove the scroll handler once all the strain images have been revealed
-              $doc.off('scroll.strainReveal');
-            }
-
-          }
-        }
-
-      });
-    };
 
     this.onStrainScroll = function($el){
       if(paused) return;
@@ -190,8 +151,6 @@
         $doc.off(scrollSpace);
       }).sticky();
 
-      $el.find('.strain-image img').addClass('offstage');
-
       this.onStrainScroll($el);
 
     };
@@ -203,9 +162,6 @@
       }.bind(this));
       
       $win.on('resize', _.debounce(_this.onResize.bind(_this), 100));
-
-      // This scroll handler uses a special namespace because we remove it after all strain images have been revealed
-      $doc.on('scroll.strainReveal', _.throttle(_this.onScrollStrainReveal.bind(_this), 50));
 
     };
 

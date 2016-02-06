@@ -1,0 +1,41 @@
+// INDEX OF ANIMATIONS
+// This is a port of Den Eden's Animate.css, converted for SASS.
+// Source: https://daneden.me/animate/
+//
+// @import this index into your project.
+// Comment out categories below to remove them from your project.
+// Or, @import specific partials (e.g. @import "animate/attention/_bounce.scss";
+//
+//-----------------------------------------------------------------------
+
+// Always required
+@import "animate/properties";
+
+// Import the animations
+@import "animate/_fading-entrances/fading-entrances";
+@import "animate/_green-street/green-street.scss";
+  // "animate/attention-seekers/attention-seekers.scss",
+  // "animate/bouncing-entrances/bouncing-entrances.scss",
+  // "animate/bouncing-exits/bouncing-exits.scss",
+  // "animate/fading-exits/fading-exits.scss",
+  // "animate/flippers/flippers.scss",
+  // "animate/lightspeed/lightspeed.scss",
+  // "animate/rotating-entrances/rotating-entrances.scss",
+  // "animate/rotating-exits/rotating-exits.scss",
+  // "animate/sliding-entrances/sliding-entrances.scss",
+  // "animate/sliding-exits/sliding-exits.scss",
+  // "animate/specials/specials.scss",
+  // "animate/zooming-entrances/zooming-entrances.scss",
+  // "animate/zooming-exits/zooming-exits.scss";
+
+.fade-in {
+  @include fadeIn();
+}
+
+.about-fade-in {
+  @include aboutFadeIn($duration: 600ms, $function: ease-out);
+}
+
+.strain-fade-in {
+  @include strainFadeIn();
+}

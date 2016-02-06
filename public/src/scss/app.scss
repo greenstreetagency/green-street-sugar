@@ -8,6 +8,7 @@
 // @import "grid";
 @import "forms";
 @import "components";
+@import "animate";
 
 body, main {
   overflow-x: hidden;
@@ -27,7 +28,7 @@ $header-height: 87px;
     padding-top: $header-height;
     section#home {
       margin-top: -$header-height;
-      padding: $header-height*2 0 $header-height;
+      padding: $header-height 0 $header-height;
     }
   }
 }

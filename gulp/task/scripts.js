@@ -56,11 +56,12 @@ module.exports = function(){
 
   });
 
-  // Copy libs over as they are
+  // Minify and copy libs over as they are (don't concat?)
   merged.add(
     gulp.src([
       paths.source + '/js/lib/**/*'
     ])
+    .pipe(uglify())
     .pipe(
       gulp.dest(paths.dist + '/js/lib/')
     )

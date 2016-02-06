@@ -63,16 +63,28 @@
     <main>
 
       <section id="home">
-        <div class="home-background"></div>
-        <div class="container">
-          <div class="mobile-secondary">Fine Cannabis Sugar</div>
-          <img src="/images/logo.png" class="home-logo"/>
-          <div class="mobile-secondary">Indica, Sativa, Hybrid</div>
+        <div class="home-background-translate"></div>
+        <div class="home-backgrounds-fade">
+          <div class="home-bg-fade home-bg-fade--1"></div>
+          <div class="home-bg-fade home-bg-fade--2"></div>
+          <div class="home-bg-fade home-bg-fade--3"></div>
         </div>
-        <div class="side-text side-text--left">
+        <div class="container">
+          <div class="mobile-secondary hidden">Fine Cannabis Sugar</div>
+          <div class="home-logo hidden">
+            <img src="/images/logo-no-border.png" class="home-logo-image"/>
+            <div class="hlb hlb--top"></div>
+            <div class="hlb hlb--right"></div>
+            <div class="hlb hlb--bottom"></div>
+            <div class="hlb hlb--left"></div>  
+          </div>
+          
+          <div class="mobile-secondary hidden">Indica, Sativa, Hybrid</div>
+        </div>
+        <div class="side-text side-text--left hidden">
           Fine Cannabis Sugar
         </div>
-        <div class="side-text side-text--right">
+        <div class="side-text side-text--right hidden">
           Indica, Sativa, Hybrid
         </div>
         <a href="#about" data-scroll class="scroll-down" title="Scroll down to learn more"></a>
@@ -81,7 +93,7 @@
       <section id="about">
         <div class="section-background section-background--about"></div>
         <div class="container">
-          <div class="section-inner">
+          <div class="section-inner gs-animate about-fade-in">
             <h2 class="section-heading">About</h2>
             <div class="section-text">We’re a full service agency that works exclusively within the marijuana industry. We enable brands to connect with influencers and consumers through non-traditional means to build brand awareness and loyalty.</div>
           </div>
@@ -154,7 +166,7 @@
       <div class="strain-column strain-column--first">
         <div class="strain-column-inner">
           <div class="strain-image">
-            <img src="/images/jar-indica.jpg" />
+            <img src="/images/jar-indica.jpg" class="gs-animate strain-fade-in" />
           </div>
         </div>
       </div>
@@ -184,7 +196,7 @@
       <div class="strain-column strain-column--first">
         <div class="strain-column-inner">
           <div class="strain-image">
-            <img src="/images/jar-sativa.jpg" />
+            <img src="/images/jar-sativa.jpg" class="gs-animate strain-fade-in" />
           </div>
         </div>
       </div>
@@ -214,7 +226,7 @@
       <div class="strain-column strain-column--first">
         <div class="strain-column-inner">
           <div class="strain-image">
-            <img src="/images/jar-hybrid.jpg" />
+            <img src="/images/jar-hybrid.jpg" class="gs-animate strain-fade-in" />
           </div>
         </div>
       </div>
@@ -476,6 +488,7 @@
     <script>window.jQuery || document.write('<script type="text/javascript" src="/js/lib/jquery-1.11.3.min.js"><\/script>')</script>
     <script type="text/javascript" src="/js/lib/slick.js"></script>
     <script type="text/javascript" src="/js/lib/jquery.sticky.js"></script>
+    <script type="text/javascript" src="/js/lib/wow.js"></script>
     <script type="text/javascript" src="/js/app.js"></script>
 
     <script>

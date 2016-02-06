@@ -1,4 +1,4 @@
-(function(window, $, Modernizr, undefined){
+(function(window, $, Modernizr, WOW, undefined){
   
   var _   = require('underscore');
   var AF  = require('request-frame');
@@ -28,6 +28,18 @@
     lg : 1200
   };
 
+  var homeSection = {
+    $el: $('.home-logo'),
+    $sideTexts: $('.side-text, .mobile-secondary'),
+    animateIn: function(){
+      this.$el.removeClass('hidden');
+      setTimeout(function(){
+        this.$el.addClass('with-border');
+        this.$sideTexts.removeClass('hidden');
+      }.bind(this), 800);
+    }
+  };
+
   function initialize() {
     
     contactForm = new ContactForm( $('form#contact') );
@@ -42,6 +54,15 @@
     StrainSectionMobile.init();
 
     attachHandlers();
+
+    new WOW({
+      boxClass : 'gs-animate',
+      offset   : 200, 
+    }).init();
+
+    setTimeout(function(){
+      homeSection.animateIn();
+    }, 1000);
 
     $win.trigger('resize');
   }
@@ -82,4 +103,4 @@
   // DOM Ready
   $( initialize )
 
-})(window, jQuery, Modernizr);
+})(window, jQuery, Modernizr, WOW);
