@@ -1,0 +1,81 @@
+.nutrition-fact-list {
+  @include list-reset();
+  margin-bottom: 15px;
+  .fact-label {
+    display: inline-block;
+    font-weight: bold;
+  }
+  .fact-percent {
+    float: right;
+    font-weight: bold;
+  }
+  li {
+    margin-bottom: 3px;
+  }
+  ul {
+    margin-left: 15px;
+    margin-bottom: 0;
+  }
+}
+
+.nutrition-concentrations {
+  @include clearfix;
+  .concentration {
+    width: 50%;
+    float: left;
+    margin: 20px 0 40px;
+    padding: 0 5px;
+    text-align: center;
+    &:nth-child(2n) {
+      float: right;
+      border-left: 3px solid $body-color;
+    }
+    @include sm-up {
+      width: 48%;
+      margin: 0 0 30px;
+      padding: 93px 5px 26px;
+      border: none !important;
+      background: {
+        size: 125px auto; // sorta magic number, but this is a good size for them to be
+        repeat: no-repeat;
+        position: center bottom;
+      }
+      &.one-oz {
+        background: {
+          image: url(/images/jar-outline-small.png);
+        }
+      }
+      &.six-oz {
+        background: {
+          image: url(/images/jar-outline-large.png);
+        }
+      }
+    }
+  }
+  .size,
+  .amount-label {
+    font-size: 0.85rem
+  }
+  .size {
+    margin-bottom: 5px;
+  }
+  .amount {
+    display: block;
+    margin-bottom: -2px;
+    font-size: 43px;
+    line-height: 1;
+    font-weight: bold;
+    text-shadow: 0 0 0 $body-color; // fake bolder
+  }
+}
+
+#overlay-nutrition-facts {
+  .overlay-title {
+    text-align: center;
+  }
+  .overlay-content-container {
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

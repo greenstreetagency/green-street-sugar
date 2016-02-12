@@ -16,10 +16,8 @@
   right: 0;
   left: 0;
   z-index: $z-index-overlay;
-
-  background: darken($body-bg, 10%);
-  background: transparentize(darken($body-bg, 10%), 0.02);
-  color: $body-color;
+  background: $body-bg;
+  // color: $body-color;
   outline: 0;
   -webkit-overflow-scrolling: touch;
 }
@@ -71,7 +69,7 @@
   padding: 25px 0;
   padding-top: 15px;
   opacity: 0;
-  transform: translateY(-20px);
+  transform: translateY(12px);
   -webkit-transition: -webkit-transform 300ms ease-out, opacity 300ms ease-out;
      -moz-transition: -moz-transform 300ms ease-out, opacity 300ms ease-out;
        -o-transition: -o-transform 300ms ease-out, opacity 300ms ease-out;

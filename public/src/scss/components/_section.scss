@@ -19,8 +19,19 @@ section {
   background-size: cover;
 
   &--about {
-    background-color: #6c4411;
-    background-image: url(/images/bg-sugar.jpg);
+    background: {
+      color: $white;
+      image: url(/images/family-shot-fade.jpg);
+      size: 600px auto;
+      position: center bottom;
+    }
+    @include sm-up {
+      background-size: 1000px auto;
+    }
+    @include lg-up {
+      background-size: 1500px auto;
+      position: center bottom -50px;
+    }
   }
   &--stockists {
     background-color: #485b61;
@@ -63,16 +74,10 @@ html.flexbox {
 
 // Make sections the height of the viewport if units are supported
 html.cssvhunit {
-  @media (min-height: 600px) {
+  @media (min-width: $screen-sm-min) and (min-height: 600px) {
     section#about,
     section#stockists {
       min-height: 100vh;
     }
   }
-  // @include sm-up {
-  //   section#about,
-  //   section#stockists {
-  //       min-height: 100vh;
-  //   }
-  // }
 }

@@ -132,7 +132,7 @@
         e.which == 27 && this.hide() // esc key
       }, this))
     }
-    else {
+    else if (!this.isShown){
       this.$element.off(Event.KEYDOWN_DISMISS);
     }
   }

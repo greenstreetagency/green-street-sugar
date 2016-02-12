@@ -236,12 +236,14 @@ $d: 15s;
 }
 
 // The gradient that uses translate looks nicer but requires a nicer browser to display correctly
-// It's completely broken in firefox so we need to test for that;
-@include sm-up {
-  .home-backgrounds-fade {
-    display: none;
-  }
-  .home-background-translate {
-    display: block;
+// It's completely broken in firefox so don't show it if that's our user agent;
+html:not([data-useragent*='Firefox/']){
+  @include sm-up {
+    .home-backgrounds-fade {
+      display: none;
+    }
+    .home-background-translate {
+      display: block;
+    }
   }
 }

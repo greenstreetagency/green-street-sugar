@@ -1,7 +1,16 @@
 section#about {
-  color: $white;
+  min-height: 540px;
   .section-inner {
     padding: 120px 0;
     text-align: center;
+    @include sm-up {
+      margin-top: -100px;
+    }
+    @include lg-up {
+      margin-top: -280px;
+    }
+  }
+  .section-text {
+    font-size: 1.1rem;
   }
 }

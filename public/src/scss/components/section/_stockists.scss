@@ -6,6 +6,7 @@ section#stockists {
   }
 
   .section-inner {
+    padding: 120px 0;
     text-align: center;  
   }
 
@@ -50,5 +51,11 @@ section#stockists {
         }
       }
     }
+  }
+
+  .coming-soon {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-top: 40px;
   }
 }

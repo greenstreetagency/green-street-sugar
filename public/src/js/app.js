@@ -13,6 +13,7 @@
   var ContactForm             = require('./components/contactForm');
   var StrainSectionDesktop    = require('./components/strainSectionDesktop');
   var StrainSectionMobile     = require('./components/strainSectionMobile');
+  var StockistsSection         = require('./components/stockistsSection');
 
   // Cached Elements
   var $win       = $(window);
@@ -27,6 +28,10 @@
     md : 992,
     lg : 1200
   };
+
+  // Add the useragent as a data attribute to the document root to use as a css hook
+  var UA = window.navigator.userAgent;
+  document.documentElement.setAttribute('data-useragent', UA);
 
   var homeSection = {
     $el: $('.home-logo'),
@@ -52,6 +57,7 @@
 
     StrainSectionDesktop.init();
     StrainSectionMobile.init();
+    StockistsSection.init();
 
     attachHandlers();
 
@@ -93,9 +99,11 @@
     // Pause the strain scroll stuff while not visible
     if(window.innerWidth >= bp.sm){
       StrainSectionDesktop.unpause();
+      StockistsSection.unpause();
       StrainSectionMobile.pause();
     } else {
       StrainSectionDesktop.pause();
+      StockistsSection.pause();
       StrainSectionMobile.unpause();
     }
   }

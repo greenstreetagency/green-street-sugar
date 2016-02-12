@@ -11,6 +11,13 @@ header {
   }
   nav {
     font-size: 1.3rem;
+    a {
+      transition: color 250ms ease-out;
+    }
+    &.inverted a {
+      color: $white;
+      transition: color 250ms ease-out;
+    }
     ul {
       @include list-reset;
       text-align: center;

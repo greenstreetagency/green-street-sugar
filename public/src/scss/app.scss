@@ -23,7 +23,7 @@ $header-height: 87px;
 
 // Below xs-min, the header is hidden
 // This is the padding for the first section when the header is fixed
-@media (min-width: $screen-sm-min) {
+@media sm-up {
   header.fixed + main {
     padding-top: $header-height;
     section#home {
@@ -60,4 +60,17 @@ $header-height: 87px;
     left: 50%;
     margin-left: -20px; // 40px / 2
   }
+}
+
+.center-text {
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 13px 24px 10px;
+  line-height: 1;
+  border: 3px solid $body-color;
+  font-family: $font-family-headings;
+  font-size: 1rem;
 }

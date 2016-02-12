@@ -23,7 +23,7 @@ $enable-flex:               false !default;
 $black: #000 !default;
 $white: #FFF !default;
 
-$body-bg: #EDE5DC !default;
+$body-bg: $white; // #EDE5DC !default;
 $body-color: #231F20;
 
 $color-indica: #A4C4D1 !default;
