@@ -1,8 +1,10 @@
 section#stockists {
-  color: $white;
-  
-  a {
+  &, a {
     color: $white;
+  }
+
+  .strain-desktop-shadow {
+    z-index: -1;
   }
 
   .section-inner {

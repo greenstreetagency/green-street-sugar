@@ -29,8 +29,10 @@ section {
       background-size: 1000px auto;
     }
     @include lg-up {
-      background-size: 1500px auto;
-      position: center bottom -50px;
+      background: {
+        size: 1500px auto;
+        position: center bottom -50px;
+      }
     }
   }
   &--stockists {
