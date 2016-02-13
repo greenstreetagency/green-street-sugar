@@ -11,6 +11,7 @@
   }
   li {
     margin-bottom: 3px;
+    @include clearfix;
   }
   ul {
     margin-left: 15px;
