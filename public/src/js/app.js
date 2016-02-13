@@ -12,7 +12,7 @@
   // Component Classes
   var ContactForm             = require('./components/contactForm');
   var StrainSectionDesktop    = require('./components/strainSectionDesktop');
-  var StrainSectionMobile     = require('./components/strainSectionMobile');
+  // var StrainSectionMobile     = require('./components/strainSectionMobile');
   var StockistsSection         = require('./components/stockistsSection');
 
   // Cached Elements
@@ -56,7 +56,7 @@
     });
 
     StrainSectionDesktop.init();
-    StrainSectionMobile.init();
+    // StrainSectionMobile.init();
     StockistsSection.init();
 
     attachHandlers();
@@ -96,15 +96,15 @@
   }
 
   function breakpointCheck() {
-    // Pause the strain scroll stuff while not visible
+    // Pause the scroll stuff on certain sections while not visible or not needed
     if(window.innerWidth >= bp.sm){
       StrainSectionDesktop.unpause();
       StockistsSection.unpause();
-      StrainSectionMobile.pause();
+      // StrainSectionMobile.pause();
     } else {
       StrainSectionDesktop.pause();
       StockistsSection.pause();
-      StrainSectionMobile.unpause();
+      // StrainSectionMobile.unpause();
     }
   }
 

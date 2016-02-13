@@ -100,9 +100,9 @@
       var i = $strains.index($el);
 
       if($strains.eq(i+1).length){
-        $shadow = $strains.eq(i+1).find('.strain-desktop-shadow'); //get the shadow from the next section
+        $shadow = $strains.eq(i+1).find('.strain-desktop-shadow'); //get the shadow from the next strain
       } else {
-        // console.log('get shadow from the section after strains');
+        $shadow = $el.parents('section').next().find('.strain-desktop-shadow'); //get the shadow from the next section
       }
 
       return $shadow;

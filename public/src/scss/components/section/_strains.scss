@@ -49,71 +49,29 @@ section#strains {
  ************************
  */
 
-.strain-mobile-images {
-  position: relative;
-  .strain-mobile-images-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: $section-fade-bg;   
-  }
-}
-
-.strain-mobile-image-list {
-  overflow: hidden;
-}
-
-.strain-mobile-image {
-  padding: 40px 0;
-  background-color: #FFF;
-  img {
-    @include center-block;
-    max-height: 550px;
-  }
-}
-
-.strain-mobile-infos {
-  position: relative;
-  height: 350px;
-  text-align: center;
-  transition: background-color 500ms ease-in-out;
-}
-
 .strain-mobile-infos-shadow {
   @extend %strain-shadow;
 }
 
-.strain-mobile-info {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  opacity: 0;
-  padding: $grid-gutter-width;
-  transition: opacity 500ms ease-out;
-  &.current {
-    opacity: 1;
-    transition: opacity 500ms ease-out;
-    transition-delay: 500ms;
+.strain-mobile-image {
+  display: block;
+  width: 300px;
+  margin-top: 40px;
+  margin-bottom: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  @include xs-up {
+    width: 400px;
   }
 }
 
-.strain-mobile-info-inner {
-  display: table;
-  height: 100%;
-  width: 100%;
+.strain-mobile-info {
+  padding: $grid-gutter-width*2 $grid-gutter-width;
+  text-align: center;
+  .pyramid-logo {
+    margin-top: 40px;
+  }
 }
-
-// TODO - Clean this up
-.strain-mobile-info-inner-2 {
-  display: table-cell;
-  height: 100%;
-  vertical-align: middle;
-}
-  
 
 /*
  ************************
